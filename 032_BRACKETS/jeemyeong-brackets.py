@@ -59,8 +59,9 @@ def brackets(StrOfBrackets):
 
 
 # http://aaalab.tistory.com/19 에서의 c++알고리즘을 파이썬으로 작성
-# 가장 처음에오는 여는 괄호 ( or [를 찾고 그 이후에 가장 먼저 오는 해당하는 괄호를 찾는다.
+# 가장 처음에오는 여는 괄호 ( or [를 찾고 그 이후에 가장 먼저 오는 해당하는 괄호부터 모든 괄호를 찾는다.
 # 그리고 그속에 있는 str에 대한 count, 그 바깥쪽의 str의 count에 2를 더한다.
+# 그리고 그 처음의 오는 괄호를 제외한 str으로 다시 반복한다.
 def brackets2(StrOfBrackets):
     if StrOfBrackets == "":
         return 0
@@ -77,6 +78,7 @@ def brackets2(StrOfBrackets):
             if StrOfBrackets[start:].find(closer) == -1:
                 break
             last = StrOfBrackets[start:].find(closer) + start
+            print(StrOfBrackets, start, count, last)
             temp = 2 + brackets2(StrOfBrackets[1:last]) + brackets2(StrOfBrackets[last+1:])
             count = max(count, temp)
             start = last + 1
@@ -142,6 +144,7 @@ def run():
         print(brackets(inputBrackets))
         inputBrackets = input()
 
+print(brackets2("[[(((]])))"))
 # testRunning()
-randomCompare()
+# randomCompare()
 # run()
