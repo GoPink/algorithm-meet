@@ -1,3 +1,4 @@
+import unittest
 import random
 
 # 기존에 만들었던 알고리즘 # 오답으로 판명
@@ -93,24 +94,22 @@ memo = {}
 memo2 = {}
 
 # test코드들
+class equalityTest(unittest.TestCase):
+	def test_equal(self):
+	    self.assertEqual(brackets("[[(((]])))"),6)
+	    self.assertEqual(brackets("((()))"),6)
+	    self.assertEqual(brackets("()()()"),6)
+	    self.assertEqual(brackets("([]])"),4)
+	    self.assertEqual(brackets(")[)("),0)
+	    self.assertEqual(brackets("([][][)"),6)
+	    self.assertEqual(brackets(")()()("),4)
+	    self.assertEqual(brackets("())[(])()()([("),8)
+	    self.assertEqual(brackets("((())"),4)
+	    self.assertEqual(brackets("(()"),2)
+	    self.assertEqual(brackets("(((][])("),4)
 def testRunning():
-    print("running...")
-    test("[[(((]])))",6)
-    test("((()))",6)
-    test("()()()",6)
-    test("([]])",4)
-    test(")[)(",0)
-    test("([][][)",6)
-    test(")()()(",4)
-    test("())[(])()()([(",8)
-    test("((())",4)
-    test("(()",2)
-    test("(((][])(",4)
-    print("End")
-
-def test(StrOfBrackets, expectResult):
-    if brackets2(StrOfBrackets) != expectResult:
-        print("ERROR", StrOfBrackets, expectResult, "is expected, but result is", brackets2(StrOfBrackets))
+	if __name__ == '__main__':
+	    unittest.main()
 
 # 난수를 생성하여 비교
 def randomCompare():
@@ -144,7 +143,6 @@ def run():
         print(brackets(inputBrackets))
         inputBrackets = input()
 
-print(brackets2("[[(((]])))"))
-# testRunning()
+testRunning()
 # randomCompare()
 # run()
