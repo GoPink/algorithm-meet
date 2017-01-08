@@ -32,7 +32,7 @@
 def removeBrackets(inputStr):
 	cnt = inputStr.count("(")
 	info = [None]*(2**(cnt+1)-2)
-	info[0] = removeNthBrackets(inputStr, 1)
+	info[0] = removeNthBrackets(inputStr, 0)
 	info[1] = inputStr
 	i = 2
 	depth = 1
@@ -41,6 +41,8 @@ def removeBrackets(inputStr):
 		depth += 1
 	for _ in range(cnt-1):
 		for _ in range(len(q)):
+			openIdx = -1
+			closeIdx = -1
 			info[i] = removeNthBrackets(info[(i-2)//2], i)
 			q.append(info[i])
 			i+=1
@@ -53,15 +55,12 @@ def removeBrackets(inputStr):
 	return solution
 
 
-def removeNthBrackets(inputStr, i):
-	calc = i
+def removeNthBrackets(inputStr, infoIdx):
 	nth = 1
-	while calc>0:
-		if (calc-2)%2 == 1:
+	while infoIdx>0:
+		if (infoIdx-2)%2 == 1:
 			nth += 1
-		calc = (calc-2)//2
-	openIdx = -1
-	closeIdx = -1
+		infoIdx = (infoIdx-2)//2
 	for i in range(len(inputStr)):
 		if inputStr[i]=="(":
 			nth-=1
