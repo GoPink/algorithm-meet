@@ -3,11 +3,14 @@ import collections
 
 def tomatoBfs(m,n,tomatoMap):
 	queue = collections.deque()
+	ripen = True
 	for i in range(n):
 		for j in range(m):
+			if tomatoMap[i][j] == 0:
+				ripen = False
 			if tomatoMap[i][j] == 1:
 				queue.append((i,j))
-	if len(queue) == n*m:
+	if ripen:
 		return 0
 	visited = []
 	for _ in range(n):
