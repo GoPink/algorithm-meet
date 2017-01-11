@@ -14,14 +14,10 @@ def tomatoBfs(m,n,tomatoMap):
 	while len(queue)>0:
 		listInThisDay = []
 		for _ in range(len(queue)):
-			node = queue.pop(0)
-			y = node[0]
-			x = node[1]
+			y,x = queue.pop(0)
 			visited[y][x] = 1
-			listInThisDay.append(node)
-		for node in listInThisDay:
-			y = node[0]
-			x = node[1]
+			listInThisDay.append((y,x))
+		for y, x in listInThisDay:
 			if y-1>=0 and (visited[y-1][x] == 0) and tomatoMap[y-1][x] == 0:
 				queue.append((y-1,x))
 				tomatoMap[y-1][x] = 1
@@ -67,5 +63,5 @@ def run():
 		tomatoMap.append(list(map(int,input().split())))
 	print(tomatoBfs(m,n,tomatoMap))
 
-run()
-# testRun(testSource)
+# run()
+testRun(testSource)
